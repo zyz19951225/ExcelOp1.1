@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.PeopleMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.model.People" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="str" property="str" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="dou" property="dou" jdbcType="DOUBLE" />
+    <result column="big" property="big" jdbcType="DECIMAL" />
+    <result column="cha" property="cha" jdbcType="CHAR" />
+    <result column="bye" property="bye" jdbcType="TINYINT" />
+    <result column="da" property="da" jdbcType="DATE" />
+    <result column="tim" property="tim" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, str, sex, dou, big, cha, bye, da, tim
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from people
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from people
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from people
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.People" >
+    insert into people (id, str, sex, dou, 
+      big, cha, bye, da, 
+      tim)
+    values (#{id,jdbcType=INTEGER}, #{str,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{dou,jdbcType=DOUBLE}, 
+      #{big,jdbcType=DECIMAL}, #{cha,jdbcType=CHAR}, #{bye,jdbcType=TINYINT}, #{da,jdbcType=DATE}, 
+      #{tim,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.People" >
+    insert into people
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="str != null" >
+        str,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="dou != null" >
+        dou,
+      </if>
+      <if test="big != null" >
+        big,
+      </if>
+      <if test="cha != null" >
+        cha,
+      </if>
+      <if test="bye != null" >
+        bye,
+      </if>
+      <if test="da != null" >
+        da,
+      </if>
+      <if test="tim != null" >
+        tim,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="str != null" >
+        #{str,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="dou != null" >
+        #{dou,jdbcType=DOUBLE},
+      </if>
+      <if test="big != null" >
+        #{big,jdbcType=DECIMAL},
+      </if>
+      <if test="cha != null" >
+        #{cha,jdbcType=CHAR},
+      </if>
+      <if test="bye != null" >
+        #{bye,jdbcType=TINYINT},
+      </if>
+      <if test="da != null" >
+        #{da,jdbcType=DATE},
+      </if>
+      <if test="tim != null" >
+        #{tim,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.People" >
+    update people
+    <set >
+      <if test="str != null" >
+        str = #{str,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="dou != null" >
+        dou = #{dou,jdbcType=DOUBLE},
+      </if>
+      <if test="big != null" >
+        big = #{big,jdbcType=DECIMAL},
+      </if>
+      <if test="cha != null" >
+        cha = #{cha,jdbcType=CHAR},
+      </if>
+      <if test="bye != null" >
+        bye = #{bye,jdbcType=TINYINT},
+      </if>
+      <if test="da != null" >
+        da = #{da,jdbcType=DATE},
+      </if>
+      <if test="tim != null" >
+        tim = #{tim,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.People" >
+    update people
+    set str = #{str,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=BIT},
+      dou = #{dou,jdbcType=DOUBLE},
+      big = #{big,jdbcType=DECIMAL},
+      cha = #{cha,jdbcType=CHAR},
+      bye = #{bye,jdbcType=TINYINT},
+      da = #{da,jdbcType=DATE},
+      tim = #{tim,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

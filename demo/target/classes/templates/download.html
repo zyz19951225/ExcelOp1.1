@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Excel文件下载</title>
+</head>
+<body>
+<!--下载选择-->
+<!--<form method="post"  id="" action="/alldownload">-->
+    <!--<table >-->
+        <!--<tr th:each="list,status:${nameList}">-->
+            <!--<div><a th:href="@{http://localhost:8080/alldownload/(sqlname=${list})}" th:id="${list}" th:text="${list}">-->
+                <!--</a></div>-->
+        <!--</tr>-->
+    <!--</table>-->
+
+<!--</form>-->
+
+    <form action="downloadList" method="get">
+        请选择要下载的Excel表：
+        <div th:each="list,status:${nameList}">
+        <label><input name="Sqlname" type="checkbox" th:value="${list}" th:text="${list}" /> </label>
+
+        </div>
+        <input type="submit" value="下载选中内容">
+    </form>
+
+
+
+    <a href="/up">进入上传页面</a>
+
+
+</body>
+</html>
